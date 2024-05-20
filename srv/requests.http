@@ -1,0 +1,7 @@
+### GET metadata
+GET http://localhost:4004/odata/v4/service/bp/$metadata
+
+
+### GET BusinessPartners
+GET http://localhost:4004/odata/v4/service/bp/BusinessPartners
+
