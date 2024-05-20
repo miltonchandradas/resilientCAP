@@ -14,7 +14,6 @@ module.exports = async (srv) => {
   const BPService = await cds.connect.to("API_BUSINESS_PARTNER");
 
   srv.on("READ", BusinessPartners, async (req) => {
-
     // Uncomment this code snippet for calling remote service with timeout, circuit breaker and retry
     const remoteCall = async (req) => {
       return await BPService.send({
@@ -27,20 +26,30 @@ module.exports = async (srv) => {
     const breaker = new CircuitBreaker(remoteCall, options);
 
     try {
-      return await retry(async () => {
-        return await breaker.fire(req);
-      });
+      return await retry(
+        async () => {
+          return await breaker.fire(req);
+        },
+        {
+          retries: 5,
+        }
+      );
     } catch (error) {
       console.log(`Error: ${error}`);
     }
 
     // Uncomment this code snippet for calling remote service with timeout and retry
     // try {
-    //   return await retry(async () => {
-    //     return await BPService.send({
-    //       query: req.query,
-    //     });
-    //   });
+    //   return await retry(
+    //     async () => {
+    //       return await BPService.send({
+    //         query: req.query,
+    //       });
+    //     },
+    //     {
+    //       retries: 5,
+    //     }
+    //   );
     // } catch (error) {
     //   console.log(`Error: ${error}`);
     // }
