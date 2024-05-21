@@ -28,6 +28,7 @@
         "kind": "odata-v2",
         "model": "srv/external/API_BUSINESS_PARTNER",
         "credentials": {
+          "requestTimeout": 60000,
           "url": "http://localhost:8081/sap/opu/odata/sap/API_BUSINESS_PARTNER/"
         }
       }

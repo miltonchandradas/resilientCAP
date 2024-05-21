@@ -54,7 +54,7 @@ module.exports = async (srv) => {
     //   console.log(`Error: ${error}`);
     // }
 
-    // Uncomment this code snippet for calling remote service with just a timeout
+    // Uncomment this code snippet for calling remote service with just a timeout (default value of 60000 configurable in package.json)
     // return await BPService.send({
     //   query: req.query
     // });
